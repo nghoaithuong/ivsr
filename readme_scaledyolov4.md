@@ -1,14 +1,35 @@
 #30/03/2021
-### create an environment `thuong` in rank server
+### Create an environment `thuong` in server
 conda create -n thuong python=3.7
 source activate thuong
-### install pytorch GPU on `thuong` 
+### Install pytorch GPU on `thuong` 
 1st: https://pytorch.org/get-started/locally/
 
 2rd: `conda install pytorch==1.7.1 torchvision==0.8.2 cudatoolkit=10.2 -c pytorch -y`
-### Install mish-cuda on rank server
+pip install pytorch==1.7.0 torchvision==0.8.2
+Let check available Pytorch on GPU
+```
+import torch
 
-### install mish-cuda, if you use different pytorch version, you could try https://github.com/thomasbrandon/mish-cuda
+torch.cuda.is_available()
+>>> True
+
+torch.cuda.current_device()
+>>> 0
+
+torch.cuda.device(0)
+>>> <torch.cuda.device at 0x7efce0b03be0>
+
+torch.cuda.device_count()
+>>> 1
+
+torch.cuda.get_device_name(0)
+>>> 'GeForce GTX 950M'
+
+```
+### Install mish-cuda 
+If you use different pytorch version, you could try [this](https://github.com/thomasbrandon/mish-cuda)
+
 `$ git clone https://github.com/JunnYu/mish-cuda
  $ cd mish-cuda
  $ python setup.py build install`
@@ -29,7 +50,7 @@ ScaledYOLOv4
   
 	----data
 
-	     --coco_person_face_filter.yaml
+	        --coco_person_face_filter.yaml
 		    
 	----models
 	    
@@ -125,4 +146,21 @@ While optional arguments:
   --logdir LOGDIR       logging directory
   `
 **Train with single GPU**
-python train.py --epoch 100 --batch-size 32 --img 320 320 --data data/person_ivsr.yaml --cfg models/yolov4-p5.yaml --weights '' --sync-bn --name yolov4-p5
+python train.py --epoch 50 --batch-size 16 --img 320 --data data/person_ivsr.yaml --cfg models/yolov4-p5.yaml --weights '' --sync-bn --name yolov4-p5-person
+
+python train.py --img 416 --batch 16 --epochs 2 --data 'data/person_ivsr_test.yaml' --cfg ./models/yolov4-csp.yaml --weights '' --name yolov4-csp-results  --cache
+
+**Error: RuntimeError: cuda error: invalid device function segmentation fault (core dumped)**
+
+**Solved**Change pytorch version, maybe using conda install not match with your GPU.
+I solved this issue by reinstall pytorch by using pip install.
+After few days to check all pytorch and CUDA version, I saw that my environment been created (using conda) got this error so I create other environment by using virtual environment (Pyimagesearch)[https://www.pyimagesearch.com/2018/05/28/ubuntu-18-04-how-to-install-opencv/] then reinstall all packages.
+
+### Use multiple CUDA on a machine 
+- Check which CUDA version running default 
+$ tree -L 1 /usr/local/
+- Remove cuda folder running 
+$ cd /usr/local/
+$ rm -rf cuda/
+- Then chmod for what version you want to use example 10.2
+sudo ln -s cuda-10.2 cuda

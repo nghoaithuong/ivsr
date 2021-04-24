@@ -14,7 +14,7 @@ $ !git reset --hard 886f1c03d839575afecb059accf74296fad395b6
 
 **Train on multiple GPU**
 
-`python train.py --img 320 --batch 32 --epochs 200 --data 'data/person_ivsr.yaml' --cfg ./models/person_yolov5s.yaml --weights '' --name yolov5s_results  --cache`
+`python train.py --img 320 --batch 32 --epochs 200 --data 'data/person_ivsr_test.yaml' --cfg ./models/person_yolov5s.yaml --weights '' --name yolov5s_test_results  --cache`
 
 **Train on a GPU**
 
