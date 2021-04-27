@@ -9,9 +9,11 @@ source activate thuong
 2rd: Using virtual environment 
 
 ### Install pytorch GPU on `thuong` 
-1st: https://pytorch.org/get-started/locally/
+1st: Get tutorials to install pytorch by visit [this](https://pytorch.org/get-started/locally/)
 
-2rd: `conda install pytorch==1.7.1 torchvision==0.8.2 cudatoolkit=10.2 -c pytorch -y`
+2rd: **Recommended** Install pytorch v1.7.1 on Cuda v10.2 
+
+`conda install pytorch==1.7.1 torchvision==0.8.2 cudatoolkit=10.2 -c pytorch -y`
 
 or `pip install pytorch==1.7.0 torchvision==0.8.2`
 

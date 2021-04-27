@@ -56,13 +56,6 @@ optional arguments:
   --name NAME           save to project/name
   --exist-ok            existing project/name ok, do not increment
 
-`python test.py \
---img 320 \
---conf 0.001 \
---batch 8 \
---device 4,5 \
---data data/satutora_person_face.yaml \
---weights runs/train/personface_yolov55/weights/best.pt`
 
 ##Export model olov5 to ONNX 
 `python models/export.py --weights coco_320/train/personface_yolov55/weights/best.pt --img 320 --batch 16`
