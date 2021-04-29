@@ -167,7 +167,7 @@ While optional arguments:
 ```
 **Train with single GPU**
 ```
-python train.py --epoch 50 --batch-size 16 --img 320 --data data/person_ivsr.yaml --cfg models/yolov4-p5.yaml --weights '' --sync-bn --name yolov4-p5-person
+python train.py --epoch 50 --batch-size 16 --img 320 --data data/person_ivsr.yaml --cfg models/yolov4-p6.yaml --weights '' --sync-bn --name yolov4-p6-person
 
 python train.py --img 416 --batch 16 --epochs 2 --data 'data/person_ivsr_test.yaml' --cfg ./models/yolov4-csp.yaml --weights '' --name yolov4-csp-results  --cache
 
