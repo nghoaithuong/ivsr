@@ -191,3 +191,17 @@ $ rm -rf cuda/
 ```
 - Then chmod for what version you want to use example 10.2
 `sudo ln -s cuda-10.2 cuda`
+
+### Export pytorch model to ONNX
+- path to ScaledYOLOv4/models/
+`python export.py --weights path-to-best-.pt --img-size 320 --batch-size 16`
+**ERROR: CoreML export failure: PyTorch convert function for op 'pythonop' not implemented.**
+**SOLVED** reinstall `pip install coremltools==4.0b1`
+
+### Export model to tensorRT
+
+https://github.com/tjuskyzhang/Scaled-YOLOv4-TensorRT
+
+
+
+
